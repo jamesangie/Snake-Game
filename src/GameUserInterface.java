@@ -1,6 +1,7 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -15,7 +16,6 @@ public class GameUserInterface extends JFrame {
 	private GameState gameState;
 	private GameLogic gameLogic;
 	// ADD YOUR INSTANCE VARIABLES HERE
-	private JFrame frame;
 	private BoardUserInterface boardInterface;
 	//ALL PRIVATE
  
@@ -30,9 +30,9 @@ public class GameUserInterface extends JFrame {
 		gameState = state;
 		this.gameLogic = gameLogic;
 
-		frame = new JFrame("Snake game");
-		frame.setSize(800, 900);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("Snake game");
+		this.setSize(800, 900);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// board interface
 		boardInterface = new BoardUserInterface(state, gameLogic);
@@ -43,6 +43,8 @@ public class GameUserInterface extends JFrame {
 		quit = new JButton("Quit");
 		panel.add(reset);
 		panel.add(quit);
+		reset.addActionListener(gameLogic);
+		quit.addActionListener(gameLogic);
 
 		//add everything to the frame
 
@@ -52,9 +54,9 @@ public class GameUserInterface extends JFrame {
 //		b.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 //		panel.add(b, BorderLayout.PAGE_START);
 
-		frame.add(boardInterface.getPanel(), BorderLayout.PAGE_START);
-		frame.add(panel, BorderLayout.AFTER_LAST_LINE);
-		frame.setVisible(true);
+		this.add(boardInterface.getPanel(), BorderLayout.PAGE_START);
+		this.add(panel, BorderLayout.AFTER_LAST_LINE);
+		this.setVisible(true);
 
     }
 
@@ -71,4 +73,8 @@ public class GameUserInterface extends JFrame {
 
    }
 
+
+	public void exit() {
+    	this.dispose();
+	}
 }

@@ -21,7 +21,6 @@ public class GameLogic implements ActionListener {
 	// YOUR CODE HERE
 	// It creates the game's userInterface and the game's state instances
         game = new GameState(size);
-        userInterface = new GameUserInterface(game, this);
 
 
 
@@ -31,25 +30,39 @@ public class GameLogic implements ActionListener {
     /**
      * Starts the game
      */
-    public void start(){
+    public void start() throws IOException {
 	// YOUR CODE HERE
-        int i = 0;
+        game = new GameState(game.getSize());
+        userInterface = new GameUserInterface(game, this);
     }
 
  
     /**
      * resets the game
      */
-    public void reset(){
+    public void reset() throws IOException {
 	// YOUR CODE HERE
-        int i = 0;
+        userInterface.setVisible(false);
+        start();
     }
 
 
     public void actionPerformed(ActionEvent e) {
 	//the logic of the game goes in this method        
 	// YOUR CODE HERE
-        int i = 0;
+        if (e.getSource() == userInterface.getQuit()) {
+            userInterface.exit();
+        }
+        else if (e.getSource() == userInterface.getReset()) {
+            try {
+                this.reset();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
+        else if (e.getSource() instanceof Cube) {
+            System.out.println(((Cube) e.getSource()).getX());
+        }
     }
 
  
