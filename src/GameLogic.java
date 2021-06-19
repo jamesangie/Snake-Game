@@ -227,23 +227,19 @@ public class GameLogic implements ActionListener {
                     if (j == 0) {
 
                         if (game.getBoard()[i + 1][j] == 1 || game.getBoard()[i][j + 1] == 1) {
-
-                            JFrame f = new JFrame();
-                            JOptionPane.showMessageDialog(f,"Congraz, you win!");
+                            win();
                         }
                     }
                     // first row, last column
                     else if (j == game.getSize() - 1) {
                         if (game.getBoard()[i][j - 1] == 1 || game.getBoard()[i + 1][j] == 1 || game.getBoard()[i + 1][j - 1] == 1) {
-                            JFrame f = new JFrame();
-                            JOptionPane.showMessageDialog(f,"Congraz, you win!");
+                            win();
                         }
                     }
                     // first row, other
                     else {
                         if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i+1][j] == 1 || game.getBoard()[i+1][j - 1] == 1) {
-                            JFrame f = new JFrame();
-                            JOptionPane.showMessageDialog(f,"Congraz, you win!");
+                            win();
                         }
                     }
                 }
@@ -253,22 +249,19 @@ public class GameLogic implements ActionListener {
                     if (j == 0) {
 
                         if (game.getBoard()[i-1][j] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j+1] == 1) {
-                            JFrame f = new JFrame();
-                            JOptionPane.showMessageDialog(f,"Congraz, you win!");
+                            win();
                         }
                     }
                     // last column
                     else if (j == game.getSize() - 1) {
                         if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i-1][j] == 1) {
-                            JFrame f = new JFrame();
-                            JOptionPane.showMessageDialog(f,"Congraz, you win!");
+                            win();
                         }
                     }
                     // first row, other
                     else {
                         if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i-1][j+1] == 1) {
-                            JFrame f = new JFrame();
-                            JOptionPane.showMessageDialog(f,"Congraz, you win!");
+                            win();
                         }
                     }
                 }
@@ -279,22 +272,19 @@ public class GameLogic implements ActionListener {
                         // first column
                         if (j == 0) {
                             if (game.getBoard()[i-1][j] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j+1] == 1 || game.getBoard()[i+1][j+1] == 1|| game.getBoard()[i+1][j] == 1) {
-                                JFrame f = new JFrame();
-                                JOptionPane.showMessageDialog(f,"Congraz, you win!");
+                                win();
                             }
                         }
                         // last column
                         else if (j == game.getSize() - 1) {
                             if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i+1][j] == 1) {
-                                JFrame f = new JFrame();
-                                JOptionPane.showMessageDialog(f,"Congraz, you win!");
+                                win();
                             }
                         }
                         // other
                         else {
                             if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i-1][j+1] == 1 || game.getBoard()[i+1][j] == 1 || game.getBoard()[i+1][j+1] == 1) {
-                                JFrame f = new JFrame();
-                                JOptionPane.showMessageDialog(f,"Congraz, you win!");
+                                win();
                             }
                         }
                     }
@@ -303,42 +293,53 @@ public class GameLogic implements ActionListener {
                         // first column
                         if (j == 0) {
                             if (game.getBoard()[i-1][j] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i+1][j] == 1) {
-                                JFrame f = new JFrame();
-                                JOptionPane.showMessageDialog(f,"Congraz, you win!");
+                                win();
                             }
                         }
                         // last column
                         else if (j == game.getSize() - 1) {
                             if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i+1][j] == 1 || game.getBoard()[i-1][j-1] == 1 || game.getBoard()[i+1][j-1] == 1) {
-                                JFrame f = new JFrame();
-                                JOptionPane.showMessageDialog(f,"Congraz, you win!");
+                                win();
                             }
                         }
                         // other
                         else {
                             if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i-1][j-1] == 1 || game.getBoard()[i+1][j] == 1 || game.getBoard()[i+1][j-1] == 1) {
-                                JFrame f = new JFrame();
-                                JOptionPane.showMessageDialog(f,"Congraz, you win!");
+                                win();
                             }
                         }
                     }
                 }
             }
 
-
-            System.out.println(Arrays.deepToString(game.getBoard()));
+            // lose condition
+            if (game.getCurrentMouse().getX() == 0 || game.getCurrentMouse().getX() == game.getSize()-1 || game.getCurrentMouse().getY() == 0 || game.getCurrentMouse().getY() == game.getSize()-1) {
+                try {
+                    lose();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
 
 
         }
     }
 
     public void win() {
-
+        JFrame f = new JFrame();
+        JOptionPane.showMessageDialog(f,"Congraz, you win!");
+        userInterface.exit();
     }
 
-    public void lose() {
+    public void lose() throws IOException {
         JFrame f = new JFrame();
-        JOptionPane.showMessageDialog(f,"Sorry, you lost");
+        int a=JOptionPane.showConfirmDialog(f,"Sorry, you lost. Play again?");
+        if(a==JOptionPane.YES_OPTION){
+            reset();
+        }
+        else {
+            userInterface.exit();
+        }
     }
 
  
