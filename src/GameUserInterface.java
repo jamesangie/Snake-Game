@@ -16,7 +16,7 @@ public class GameUserInterface extends JFrame {
 	private GameState gameState;
 	private GameLogic gameLogic;
 	// ADD YOUR INSTANCE VARIABLES HERE
-	private BoardUserInterface boardInterface;
+	BoardUserInterface boardInterface;
 	//ALL PRIVATE
  
     /* Constructor 
@@ -54,7 +54,7 @@ public class GameUserInterface extends JFrame {
 //		b.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 //		panel.add(b, BorderLayout.PAGE_START);
 
-		this.add(boardInterface.getPanel(), BorderLayout.PAGE_START);
+		this.add(boardInterface, BorderLayout.PAGE_START);
 		this.add(panel, BorderLayout.AFTER_LAST_LINE);
 		this.setVisible(true);
 
@@ -76,5 +76,6 @@ public class GameUserInterface extends JFrame {
 
 	public void exit() {
     	this.dispose();
+
 	}
 }
