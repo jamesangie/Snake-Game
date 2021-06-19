@@ -75,11 +75,256 @@ public class GameLogic implements ActionListener {
             int j = c.getColumn();
             int t = c.getType();
 
-            // game logic
-            
+            // game logic starts here
 
-            userInterface.boardInterface.cubeBoard[2][4].setIcon(icon2);
-            userInterface.boardInterface.update();
+            // if selected is space
+            if (t == 0) {
+                // first row
+                if (i == 0) {
+                    // first row, first column
+                    if (j == 0) {
+
+                        if (game.getBoard()[i + 1][j] == 1 || game.getBoard()[i][j + 1] == 1) {
+                            game.select(i, j);
+                            userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                            userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon0);
+                            game.moveMouse();
+                            userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon2);
+                        }
+                    }
+                    // first row, last column
+                    else if (j == game.getSize() - 1) {
+                        if (game.getBoard()[i][j - 1] == 1 || game.getBoard()[i + 1][j] == 1 || game.getBoard()[i + 1][j - 1] == 1) {
+                            game.select(i, j);
+                            userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                            userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon0);
+                            game.moveMouse();
+                            userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon2);
+                        }
+                    }
+                    // first row, other
+                    else {
+                        if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i+1][j] == 1 || game.getBoard()[i+1][j - 1] == 1) {
+                            game.select(i, j);
+                            userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                            userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon0);
+                            game.moveMouse();
+                            userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon2);
+                        }
+                    }
+                }
+                // last row
+                else if (i == game.getSize()-1) {
+                    // first column
+                    if (j == 0) {
+
+                        if (game.getBoard()[i-1][j] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j+1] == 1) {
+                            game.select(i, j);
+                            userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                            userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon0);
+                            game.moveMouse();
+                            userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon2);
+                        }
+                    }
+                    // last column
+                    else if (j == game.getSize() - 1) {
+                        if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i-1][j] == 1) {
+                            game.select(i, j);
+                            userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                            userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon0);
+                            game.moveMouse();
+                            userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon2);
+                        }
+                    }
+                    // first row, other
+                    else {
+                        if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i-1][j+1] == 1) {
+                            game.select(i, j);
+                            userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                            userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon0);
+                            game.moveMouse();
+                            userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon2);
+                        }
+                    }
+                }
+                // middle row
+                else {
+                    // even row
+                    if ((i+1)%2==0) {
+                        // first column
+                        if (j == 0) {
+                            if (game.getBoard()[i-1][j] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j+1] == 1 || game.getBoard()[i+1][j+1] == 1|| game.getBoard()[i+1][j] == 1) {
+                                game.select(i, j);
+                                userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                                userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon0);
+                                game.moveMouse();
+                                userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon2);
+                            }
+                        }
+                        // last column
+                        else if (j == game.getSize() - 1) {
+                            if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i+1][j] == 1) {
+                                game.select(i, j);
+                                userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                                userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon0);
+                                game.moveMouse();
+                                userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon2);
+                            }
+                        }
+                        // other
+                        else {
+                            if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i-1][j+1] == 1 || game.getBoard()[i+1][j] == 1 || game.getBoard()[i+1][j+1] == 1) {
+                                game.select(i, j);
+                                userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                                userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon0);
+                                game.moveMouse();
+                                userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon2);
+                            }
+                        }
+                    }
+                    // odd row
+                    else {
+                        // first column
+                        if (j == 0) {
+                            if (game.getBoard()[i-1][j] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i+1][j] == 1) {
+                                game.select(i, j);
+                                userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                                userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon0);
+                                game.moveMouse();
+                                userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon2);
+                            }
+                        }
+                        // last column
+                        else if (j == game.getSize() - 1) {
+                            if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i+1][j] == 1 || game.getBoard()[i-1][j-1] == 1 || game.getBoard()[i+1][j-1] == 1) {
+                                game.select(i, j);
+                                userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                                userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon0);
+                                game.moveMouse();
+                                userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon2);
+                            }
+                        }
+                        // other
+                        else {
+                            if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i-1][j-1] == 1 || game.getBoard()[i+1][j] == 1 || game.getBoard()[i+1][j-1] == 1) {
+                                game.select(i, j);
+                                userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                                userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon0);
+                                game.moveMouse();
+                                userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon2);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // if selected is mouse
+            if (t == 2) {
+                // first row
+                if (i == 0) {
+                    // first row, first column
+                    if (j == 0) {
+
+                        if (game.getBoard()[i + 1][j] == 1 || game.getBoard()[i][j + 1] == 1) {
+                            game.select(i, j);
+                            userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+
+                        }
+                    }
+                    // first row, last column
+                    else if (j == game.getSize() - 1) {
+                        if (game.getBoard()[i][j - 1] == 1 || game.getBoard()[i + 1][j] == 1 || game.getBoard()[i + 1][j - 1] == 1) {
+                            game.select(i, j);
+                            userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                        }
+                    }
+                    // first row, other
+                    else {
+                        if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i+1][j] == 1 || game.getBoard()[i+1][j - 1] == 1) {
+                            game.select(i, j);
+                            userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                        }
+                    }
+                }
+                // last row
+                else if (i == game.getSize()-1) {
+                    // first column
+                    if (j == 0) {
+
+                        if (game.getBoard()[i-1][j] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j+1] == 1) {
+                            game.select(i, j);
+                            userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                        }
+                    }
+                    // last column
+                    else if (j == game.getSize() - 1) {
+                        if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i-1][j] == 1) {
+                            game.select(i, j);
+                            userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                        }
+                    }
+                    // first row, other
+                    else {
+                        if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i-1][j+1] == 1) {
+                            game.select(i, j);
+                            userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                        }
+                    }
+                }
+                // middle row
+                else {
+                    // even row
+                    if ((i+1)%2==0) {
+                        // first column
+                        if (j == 0) {
+                            if (game.getBoard()[i-1][j] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j+1] == 1 || game.getBoard()[i+1][j+1] == 1|| game.getBoard()[i+1][j] == 1) {
+                                game.select(i, j);
+                                userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                            }
+                        }
+                        // last column
+                        else if (j == game.getSize() - 1) {
+                            if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i+1][j] == 1) {
+                                game.select(i, j);
+                                userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                            }
+                        }
+                        // other
+                        else {
+                            if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i-1][j+1] == 1 || game.getBoard()[i+1][j] == 1 || game.getBoard()[i+1][j+1] == 1) {
+                                game.select(i, j);
+                                userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                            }
+                        }
+                    }
+                    // odd row
+                    else {
+                        // first column
+                        if (j == 0) {
+                            if (game.getBoard()[i-1][j] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i+1][j] == 1) {
+                                game.select(i, j);
+                                userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                            }
+                        }
+                        // last column
+                        else if (j == game.getSize() - 1) {
+                            if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i+1][j] == 1 || game.getBoard()[i-1][j-1] == 1 || game.getBoard()[i+1][j-1] == 1) {
+                                game.select(i, j);
+                                userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                            }
+                        }
+                        // other
+                        else {
+                            if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i-1][j-1] == 1 || game.getBoard()[i+1][j] == 1 || game.getBoard()[i+1][j-1] == 1) {
+                                game.select(i, j);
+                                userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                            }
+                        }
+                    }
+                }
+            }
+
+            
         }
     }
 

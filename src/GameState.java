@@ -103,10 +103,20 @@ public class GameState {
 
     /* Getter method for the current red cube
      * return the location of the current red cube */
-    public Point getCurrentCube(){
-		return redCube;//REPLACE THIS LINE WITH YOUR CODE
+    public Point getCurrentMouse(){
+		return redCube;
     }
 
     public int[][] getBoard() {return board;}
+
+    public void moveMouse() {
+        int mouse_x = aRandom.nextInt(boardSize);
+        int mouse_y = aRandom.nextInt(boardSize);
+        while (board[mouse_x][mouse_y] != 0) {
+            mouse_x = aRandom.nextInt(boardSize);
+            mouse_y = aRandom.nextInt(boardSize);
+        }
+        redCube = new Point(mouse_x, mouse_y);
+    }
 
 }
