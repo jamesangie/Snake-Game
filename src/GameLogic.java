@@ -78,7 +78,7 @@ public class GameLogic implements ActionListener {
             // game logic starts here
 
             // if selected is space
-            if (t == 0) {
+            if (game.getBoard()[i][j] == 0) {
                 // first row
                 if (i == 0) {
                     // first row, first column
@@ -121,6 +121,7 @@ public class GameLogic implements ActionListener {
                         if (game.getBoard()[i-1][j] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j+1] == 1) {
                             game.select(i, j);
                             userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+
                             userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon0);
                             game.moveMouse();
                             userInterface.boardInterface.cubeBoard[game.getCurrentMouse().getX()][game.getCurrentMouse().getY()].setIcon(icon2);
@@ -219,30 +220,30 @@ public class GameLogic implements ActionListener {
             }
 
             // if selected is mouse
-            if (t == 2) {
+            if (game.getBoard()[i][j] == 2) {
                 // first row
                 if (i == 0) {
                     // first row, first column
                     if (j == 0) {
 
                         if (game.getBoard()[i + 1][j] == 1 || game.getBoard()[i][j + 1] == 1) {
-                            game.select(i, j);
-                            userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
 
+                            JFrame f = new JFrame();
+                            JOptionPane.showMessageDialog(f,"Congraz, you win!");
                         }
                     }
                     // first row, last column
                     else if (j == game.getSize() - 1) {
                         if (game.getBoard()[i][j - 1] == 1 || game.getBoard()[i + 1][j] == 1 || game.getBoard()[i + 1][j - 1] == 1) {
-                            game.select(i, j);
-                            userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                            JFrame f = new JFrame();
+                            JOptionPane.showMessageDialog(f,"Congraz, you win!");
                         }
                     }
                     // first row, other
                     else {
                         if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i+1][j] == 1 || game.getBoard()[i+1][j - 1] == 1) {
-                            game.select(i, j);
-                            userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                            JFrame f = new JFrame();
+                            JOptionPane.showMessageDialog(f,"Congraz, you win!");
                         }
                     }
                 }
@@ -252,22 +253,22 @@ public class GameLogic implements ActionListener {
                     if (j == 0) {
 
                         if (game.getBoard()[i-1][j] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j+1] == 1) {
-                            game.select(i, j);
-                            userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                            JFrame f = new JFrame();
+                            JOptionPane.showMessageDialog(f,"Congraz, you win!");
                         }
                     }
                     // last column
                     else if (j == game.getSize() - 1) {
                         if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i-1][j] == 1) {
-                            game.select(i, j);
-                            userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                            JFrame f = new JFrame();
+                            JOptionPane.showMessageDialog(f,"Congraz, you win!");
                         }
                     }
                     // first row, other
                     else {
                         if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i-1][j+1] == 1) {
-                            game.select(i, j);
-                            userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                            JFrame f = new JFrame();
+                            JOptionPane.showMessageDialog(f,"Congraz, you win!");
                         }
                     }
                 }
@@ -278,22 +279,22 @@ public class GameLogic implements ActionListener {
                         // first column
                         if (j == 0) {
                             if (game.getBoard()[i-1][j] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j+1] == 1 || game.getBoard()[i+1][j+1] == 1|| game.getBoard()[i+1][j] == 1) {
-                                game.select(i, j);
-                                userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                                JFrame f = new JFrame();
+                                JOptionPane.showMessageDialog(f,"Congraz, you win!");
                             }
                         }
                         // last column
                         else if (j == game.getSize() - 1) {
                             if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i+1][j] == 1) {
-                                game.select(i, j);
-                                userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                                JFrame f = new JFrame();
+                                JOptionPane.showMessageDialog(f,"Congraz, you win!");
                             }
                         }
                         // other
                         else {
                             if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i-1][j+1] == 1 || game.getBoard()[i+1][j] == 1 || game.getBoard()[i+1][j+1] == 1) {
-                                game.select(i, j);
-                                userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                                JFrame f = new JFrame();
+                                JOptionPane.showMessageDialog(f,"Congraz, you win!");
                             }
                         }
                     }
@@ -302,30 +303,42 @@ public class GameLogic implements ActionListener {
                         // first column
                         if (j == 0) {
                             if (game.getBoard()[i-1][j] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i+1][j] == 1) {
-                                game.select(i, j);
-                                userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                                JFrame f = new JFrame();
+                                JOptionPane.showMessageDialog(f,"Congraz, you win!");
                             }
                         }
                         // last column
                         else if (j == game.getSize() - 1) {
                             if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i+1][j] == 1 || game.getBoard()[i-1][j-1] == 1 || game.getBoard()[i+1][j-1] == 1) {
-                                game.select(i, j);
-                                userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                                JFrame f = new JFrame();
+                                JOptionPane.showMessageDialog(f,"Congraz, you win!");
                             }
                         }
                         // other
                         else {
                             if (game.getBoard()[i][j-1] == 1 || game.getBoard()[i][j+1] == 1 || game.getBoard()[i-1][j] == 1 || game.getBoard()[i-1][j-1] == 1 || game.getBoard()[i+1][j] == 1 || game.getBoard()[i+1][j-1] == 1) {
-                                game.select(i, j);
-                                userInterface.boardInterface.cubeBoard[i][j].setIcon(icon1);
+                                JFrame f = new JFrame();
+                                JOptionPane.showMessageDialog(f,"Congraz, you win!");
                             }
                         }
                     }
                 }
             }
 
-            
+
+            System.out.println(Arrays.deepToString(game.getBoard()));
+
+
         }
+    }
+
+    public void win() {
+
+    }
+
+    public void lose() {
+        JFrame f = new JFrame();
+        JOptionPane.showMessageDialog(f,"Sorry, you lost");
     }
 
  
