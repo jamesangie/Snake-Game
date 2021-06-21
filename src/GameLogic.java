@@ -69,6 +69,7 @@ public class GameLogic implements ActionListener {
                 ioException.printStackTrace();
             }
         }
+
         else if (e.getSource() instanceof Cube) {
             Cube c = ((Cube) e.getSource());
             int i = c.getRow();

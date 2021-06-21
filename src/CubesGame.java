@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class CubesGame{
 	public static void main (String[] args) throws IOException {
-		int size=12;
+		int size=11;
 		if(size<4 || size>20){
 			System.out.println ("Invalid argument, the size needs to be between 4 and 20");
 		}else {

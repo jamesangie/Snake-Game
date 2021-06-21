@@ -34,8 +34,8 @@ public class GameState {
         }
         // set the location of the mouse
         if (size % 2 == 1) {
-            redCube = new Point(size/2 + 1, size/2 + 1);
-            board[size/2 + 1][size/2 + 1] = RED_CUBE;
+            redCube = new Point(size/2, size/2);
+            board[size/2 ][size/2] = RED_CUBE;
         }
         else {
             int red_x = aRandom.nextInt(2) + (size/2 - 1);
